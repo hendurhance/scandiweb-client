@@ -1,80 +1,86 @@
 <template>
     <div>
+        <BaseHeader :title="'Product List'" :button-mode="'list'" />
         <section>
-        <div class="product-grid">
-            <div class="product-item">
-                <div class="item-details">
-                    <p>SKU001</p>
-                    <p>Product 1</p>
-                    <p>15.00 $</p>
-                    <p>Size: 70MB</p>
-                    <input type="checkbox" class="delete-checkbox">
+            <div class="product-grid">
+                <div class="product-item">
+                    <div class="item-details">
+                        <p>SKU001</p>
+                        <p>Product 1</p>
+                        <p>15.00 $</p>
+                        <p>Size: 70MB</p>
+                        <input type="checkbox" class="delete-checkbox">
+                    </div>
                 </div>
-            </div>
-            <div class="product-item">
-                <div class="item-details">
-                    <p>SKU001</p>
-                    <p>Product 1</p>
-                    <p>15.00 $</p>
-                    <p>Size: 70MB</p>
-                    <input type="checkbox" class="delete-checkbox">
+                <div class="product-item">
+                    <div class="item-details">
+                        <p>SKU001</p>
+                        <p>Product 1</p>
+                        <p>15.00 $</p>
+                        <p>Size: 70MB</p>
+                        <input type="checkbox" class="delete-checkbox">
+                    </div>
                 </div>
-            </div>
-            <div class="product-item">
-                <div class="item-details">
-                    <p>SKU001</p>
-                    <p>Product 1</p>
-                    <p>15.00 $</p>
-                    <p>Size: 70MB</p>
-                    <input type="checkbox" class="delete-checkbox">
+                <div class="product-item">
+                    <div class="item-details">
+                        <p>SKU001</p>
+                        <p>Product 1</p>
+                        <p>15.00 $</p>
+                        <p>Size: 70MB</p>
+                        <input type="checkbox" class="delete-checkbox">
+                    </div>
                 </div>
-            </div>
-            <div class="product-item">
-                <div class="item-details">
-                    <p>SKU001</p>
-                    <p>Product 1</p>
-                    <p>15.00 $</p>
-                    <p>Size: 70MB</p>
-                    <input type="checkbox" class="delete-checkbox">
+                <div class="product-item">
+                    <div class="item-details">
+                        <p>SKU001</p>
+                        <p>Product 1</p>
+                        <p>15.00 $</p>
+                        <p>Size: 70MB</p>
+                        <input type="checkbox" class="delete-checkbox">
+                    </div>
                 </div>
-            </div>
-            <div class="product-item">
-                <div class="item-details">
-                    <p>SKU001</p>
-                    <p>Product 1</p>
-                    <p>15.00 $</p>
-                    <p>Size: 70MB</p>
-                    <input type="checkbox" class="delete-checkbox">
+                <div class="product-item">
+                    <div class="item-details">
+                        <p>SKU001</p>
+                        <p>Product 1</p>
+                        <p>15.00 $</p>
+                        <p>Size: 70MB</p>
+                        <input type="checkbox" class="delete-checkbox">
+                    </div>
                 </div>
-            </div>
-            <div class="product-item">
-                <div class="item-details">
-                    <p>SKU001</p>
-                    <p>Product 1</p>
-                    <p>15.00 $</p>
-                    <p>Size: 70MB</p>
-                    <input type="checkbox" class="delete-checkbox">
+                <div class="product-item">
+                    <div class="item-details">
+                        <p>SKU001</p>
+                        <p>Product 1</p>
+                        <p>15.00 $</p>
+                        <p>Size: 70MB</p>
+                        <input type="checkbox" class="delete-checkbox">
+                    </div>
                 </div>
-            </div>
-            <div class="product-item">
-                <div class="item-details">
-                    <p>SKU001</p>
-                    <p>Product 1</p>
-                    <p>15.00 $</p>
-                    <p>Size: 70MB</p>
-                    <input type="checkbox" class="delete-checkbox">
+                <div class="product-item">
+                    <div class="item-details">
+                        <p>SKU001</p>
+                        <p>Product 1</p>
+                        <p>15.00 $</p>
+                        <p>Size: 70MB</p>
+                        <input type="checkbox" class="delete-checkbox">
+                    </div>
                 </div>
-            </div>
 
-        </div>
-    </section>
+            </div>
+        </section>
     </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import BaseHeader from "../components/base/BaseHeader.vue";
 
-export default defineComponent({});
+export default defineComponent({
+    components: {
+        BaseHeader,
+    },
+});
 </script>
 
 <style lang="scss" scoped >
@@ -134,5 +140,4 @@ section {
         grid-template-columns: repeat(1, 1fr);
     }
 }
-
 </style>

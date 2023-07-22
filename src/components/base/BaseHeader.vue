@@ -1,20 +1,46 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
-
+import { useRouter } from 'vue-router';
 export default defineComponent({
   name: 'BaseHeader',
-  props: ['mode'],
+  props: {
+    title: {
+      type: String,
+      required: true,
+    },
+    buttonMode: {
+      type: String,
+      required: true,
+    },
+  },
+  setup() {
+    const router = useRouter();
+    const handleAddClick = () => {
+      router.push('/add-product');
+    };
+    const handleCancelClick = () => {
+      router.push('/');
+    };
+    return {
+      handleAddClick,
+      handleCancelClick,
+    };
+  },
 });
 </script>
 
 <template>
   <header>
     <h1>
-      {{ mode === 'ProductListing' ? 'Product Listing' : 'Create Product' }}
+      {{ title }}
     </h1>
-    <div class="button-grid">
-      <button>Add</button>
-      <button>Mass Delete</button>
+    <div v-if="buttonMode === 'list'" class="button-grid">
+      <button @click="handleAddClick">Add</button>
+      <button id="delete-product-btn">Mass Delete</button>
+    </div>
+    <div v-else-if="buttonMode === 'add'" class="button-grid">
+      <button>Save</button>
+      <button @click="handleCancelClick">Cancel</button>
     </div>
   </header>
 </template>
