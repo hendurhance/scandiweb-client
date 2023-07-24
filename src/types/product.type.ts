@@ -4,9 +4,9 @@ export default interface Product {
     name: string;
     price: number;
     type: string;
-    size?: number;
-    weight?: number;
-    width?: number;
-    height?: number;
-    length?: number;
+    size?: number | null;
+    weight?: number | null;
+    width?: number | null;
+    height?: number | null;
+    length?: number | null;
 }

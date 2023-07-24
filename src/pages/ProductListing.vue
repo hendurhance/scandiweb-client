@@ -23,12 +23,12 @@ export default defineComponent({
     },
     setup() {
         const apiURL = config.api.baseUrl;
-        const products = ref([]);
+        const products = ref<Product[]>([]);
         onMounted(() => {
             fetch(`${apiURL}/products`)
                 .then((response) => response.json())
                 .then((data) => {
-                    products.value = data.data;
+                    products.value = data.data as Product[];
                     console.log(data);
                 });
         });
