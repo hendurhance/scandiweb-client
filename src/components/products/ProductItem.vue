@@ -1,11 +1,24 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import decimalToWholeNumber from '../../composables/decimalToWholeNumber';
+
+interface Product {
+    sku: string;
+    name: string;
+    price: number;
+    type: string;
+    size?: number;
+    weight?: number;
+    width?: number;
+    height?: number;
+    length?: number;
+}
+
 export default defineComponent({
     name: 'ProductItem',
     props: {
         product: {
-            type: Object,
+            type: Object as () => Product,
             required: true,
         },
     },
