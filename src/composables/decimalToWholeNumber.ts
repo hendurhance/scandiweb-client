@@ -1,5 +1,8 @@
-const decimalToWholeNumber = (decimal: number): number => {
-    return Math.round(decimal * 100) / 100;
+const decimalToWholeNumber = (decimal: number|undefined): number => {
+    if (decimal) {
+        return Math.round(decimal * 100);
+    }
+    return 0;
 }
 
 export default decimalToWholeNumber;

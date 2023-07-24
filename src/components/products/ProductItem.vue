@@ -1,6 +1,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import decimalToWholeNumber from '../../composables/decimalToWholeNumber';
+import Product from '../../types/product.type';
 
 export default defineComponent({
     name: 'ProductItem',

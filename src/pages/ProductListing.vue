@@ -3,7 +3,7 @@
         <BaseHeader :title="'Product List'" :button-mode="'list'" />
         <section>
             <div class="product-grid">
-                <ProductItem v-for="product in products" :key="product.id" :product="product" />
+                <ProductItem v-for="product in products" :key="product.id" :product="(product as Product)" />
             </div>
         </section>
     </div>
@@ -13,6 +13,7 @@
 import { defineComponent, onMounted, ref } from "vue";
 import BaseHeader from "../components/base/BaseHeader.vue";
 import ProductItem from "../components/products/ProductItem.vue";
+import Product from "../types/product.type";
 import config from '../config/index';
 
 export default defineComponent({
