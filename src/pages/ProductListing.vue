@@ -73,13 +73,38 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, onMounted, ref } from "vue";
 import BaseHeader from "../components/base/BaseHeader.vue";
-
+import config from '../config/index';
 export default defineComponent({
     components: {
         BaseHeader,
     },
+    setup() {
+        const apiURL = config.api.baseUrl;
+        const products = ref([]);
+        onMounted(() => {
+            fetch(`${apiURL}/products`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+                },
+            })
+                .then((response) => response.json())
+                .then((data) => {
+                    products.value = data;
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                });
+        });
+        return {
+            products,
+        }
+    }
 });
 </script>
 
