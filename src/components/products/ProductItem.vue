@@ -23,7 +23,7 @@ export default defineComponent({
         <div class="item-details">
             <p>{{ product.sku }}</p>
             <p>{{ product.name }}</p>
-            <p>{{ product.price }}$</p>
+            <p>{{ decimalToWholeNumber(product.price) }}$</p>
             <p v-if="product.type === 'dvd'">Size: {{ product.size }} MB</p>
             <p v-if="product.type === 'book'">Weight: {{ product.weight }} CM</p>
             <p v-if="product.type === 'furniture'">Dimensions: {{ decimalToWholeNumber(product.width) }}x{{ decimalToWholeNumber(product.height) }}x{{ decimalToWholeNumber(product.length) }}CM</p>
