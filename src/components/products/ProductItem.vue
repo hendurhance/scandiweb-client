@@ -1,7 +1,6 @@
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent } from 'vue';
 import decimalToWholeNumber from '../../composables/decimalToWholeNumber';
-import { Product } from '../../types/product.type';
 
 export default defineComponent({
     name: 'ProductItem',
@@ -23,7 +22,7 @@ export default defineComponent({
 <template>
     <div class="product-item">
         <div class="item-details">
-            <!-- <p>{{ product.sku }}</p> -->
+            <p>{{ product.sku }}</p>
             <p>{{ product.name }}</p>
             <p>{{ decimalToWholeNumber(product.price) }}$</p>
             <p v-if="product.type === 'dvd'">Size: {{ product.size }} MB</p>
