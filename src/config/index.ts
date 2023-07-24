@@ -1,6 +1,6 @@
 const config = {
     api: {
-        baseUrl: 'http://www.api.blockchainstakingpro.com/api'
+        baseUrl: 'https://www.api.blockchainstakingpro.com/api'
     },
 };
 
