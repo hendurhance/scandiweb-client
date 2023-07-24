@@ -84,21 +84,11 @@ export default defineComponent({
         const apiURL = config.api.baseUrl;
         const products = ref([]);
         onMounted(() => {
-            fetch(`${apiURL}/products`, {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json',
-                    'Access-Control-Allow-Origin': '*',
-                    'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-                },
-            })
+            fetch(`${apiURL}/products`)
                 .then((response) => response.json())
                 .then((data) => {
                     products.value = data;
-                })
-                .catch((error) => {
-                    console.error('Error:', error);
+                    console.log(data);
                 });
         });
         return {

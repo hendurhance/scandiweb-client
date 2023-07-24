@@ -7,7 +7,6 @@
                     <div class="form-group">
                         <label for="sku">SKU</label>
                         <input type="text" id="sku" name="sku" placeholder="Enter product SKU" />
-                        <span>{{ errors.sku }}</span>
                     </div>
                     <div class="form-group">
                         <label for="name">Name</label>
@@ -80,9 +79,9 @@ export default defineComponent({
             }
         };
 
-        const validateForm = () => {
-            const form = document.getElementById("product_form") as HTMLFormElement;
-        }
+        // const validateForm = () => {
+        //     const form = document.getElementById("product_form") as HTMLFormElement;
+        // }
 
         const submitForm = () => {
             const form = document.getElementById("product_form") as HTMLFormElement;
