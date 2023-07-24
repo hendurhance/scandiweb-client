@@ -28,7 +28,7 @@ export default defineComponent({
             <p>{{ decimalToWholeNumber(product.price) }}$</p>
             <p v-if="product.type === 'dvd'">Size: {{ product.size }} MB</p>
             <p v-if="product.type === 'book'">Weight: {{ product.weight }} CM</p>
-            <p v-if="product.type === 'furniture'">Dimensions: {{ decimalToWholeNumber(product.width) }}x{{ decimalToWholeNumber(product.height) }}x{{ decimalToWholeNumber(product.length) }}CM</p>
+            <p v-if="product.type === 'furniture'">Dimensions: {{ product.width }}x{{ product.height }}x{{ product.length }}CM</p>
             <input type="checkbox" class="delete-checkbox">
         </div>
     </div>

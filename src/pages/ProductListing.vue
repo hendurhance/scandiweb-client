@@ -3,7 +3,7 @@
         <BaseHeader :title="'Product List'" :button-mode="'list'" />
         <section>
             <div class="product-grid">
-                <ProductItem v-for="product in products" :key="product.id" :product="(product as Product)" />
+                <ProductItem v-for="product in products" :key="product" :product="(product as Product)" />
             </div>
         </section>
     </div>
