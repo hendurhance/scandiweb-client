@@ -2,13 +2,14 @@
     <div>
         <BaseHeader :title="'Product List'" :button-mode="'list'" @mass-delete="massDelete()" />
         <section>
-            <div class="product-grid">
-                <ProductItem v-for="product in products" :key="product.id" :product="(product as Product)" />
+            <div v-if="isLoading" class="loading-indicator">Loading...</div>
+            <div v-else class="product-grid">
+                <ProductItem v-for="product in products" :key="product.id" :product="product" />
             </div>
         </section>
     </div>
 </template>
-
+  
 <script lang="ts">
 import { defineComponent, onMounted, ref } from "vue";
 import BaseHeader from "../components/base/BaseHeader.vue";
@@ -24,13 +25,18 @@ export default defineComponent({
     setup() {
         const apiURL = config.api.baseUrl;
         const products = ref<Product[]>([]);
+        const isLoading = ref(true);
 
-        const fetchProducts = () => {
-            fetch(`${apiURL}/products`)
-                .then((response) => response.json())
-                .then((data) => {
-                    products.value = data.data as Product[];
-                });
+        const fetchProducts = async () => {
+            try {
+                const response = await fetch(`${apiURL}/products`);
+                const data = await response.json();
+                products.value = data.data as Product[];
+            } catch (error) {
+                console.error("Error fetching products:", error);
+            } finally {
+                isLoading.value = false;
+            }
         };
 
         const massDelete = () => {
@@ -60,14 +66,16 @@ export default defineComponent({
                 });
         };
 
-        onMounted(() => {
-            fetchProducts();
+        onMounted(async () => {
+            await fetchProducts();
         });
+
         return {
             products,
             massDelete,
-        }
-    }
+            isLoading,
+        };
+    },
 });
 </script>
 
@@ -80,6 +88,12 @@ section {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-gap: 2rem;
+}
+
+.loading-indicator {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 @media screen and (max-width: 1024px) {
