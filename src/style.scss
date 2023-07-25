@@ -39,5 +39,16 @@ section {
 
 button {
   cursor: pointer;
-  text-transform: uppercase;
+}
+
+label {
+  font-weight: 400;
+  margin-bottom: 0.5rem;
+}
+
+input,
+select {
+  padding: 1rem;
+  border-radius: 0.25rem;
+  border: 1px solid #eaeaea;
 }

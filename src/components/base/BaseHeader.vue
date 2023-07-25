@@ -1,5 +1,5 @@
 <script lang="ts">
-import { defineComponent, defineEmits } from 'vue';
+import { defineComponent } from 'vue';
 import { useRouter } from 'vue-router';
 export default defineComponent({
   name: 'BaseHeader',
@@ -15,7 +15,6 @@ export default defineComponent({
   },
   setup() {
     const router = useRouter();
-    const emit = defineEmits(['submitForm']);
 
     const handleAddClick = () => {
       router.push('/add-product');
@@ -27,7 +26,6 @@ export default defineComponent({
     return {
       handleAddClick,
       handleCancelClick,
-      emit,
     };
   },
 });
@@ -39,8 +37,8 @@ export default defineComponent({
       {{ title }}
     </h1>
     <div v-if="buttonMode === 'list'" class="button-grid">
-      <button @click="handleAddClick">Add</button>
-      <button id="delete-product-btn">Mass Delete</button>
+      <button @click="handleAddClick">ADD</button>
+      <button id="delete-product-btn">MASS DELETE</button>
     </div>
     <div v-else-if="buttonMode === 'add'" class="button-grid">
       <button @click="$emit('submitForm')">Save</button>

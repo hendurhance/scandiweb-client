@@ -29,7 +29,6 @@ export default defineComponent({
                 .then((response) => response.json())
                 .then((data) => {
                     products.value = data.data as Product[];
-                    console.log(data);
                 });
         });
         return {
