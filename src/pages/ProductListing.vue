@@ -25,6 +25,14 @@ export default defineComponent({
         const apiURL = config.api.baseUrl;
         const products = ref<Product[]>([]);
 
+        const fetchProducts = () => {
+            fetch(`${apiURL}/products`)
+                .then((response) => response.json())
+                .then((data) => {
+                    products.value = data.data as Product[];
+                });
+        };
+
         const massDelete = () => {
             const checkboxes = document.querySelectorAll('.delete-checkbox');
             const skus: string[] = [];
@@ -47,16 +55,13 @@ export default defineComponent({
                 .then((response) => response.json())
                 .then((data) => {
                     if (data.status === 'success') {
-                        window.location.reload();
+                        fetchProducts();
                     }
                 });
         };
+
         onMounted(() => {
-            fetch(`${apiURL}/products`)
-                .then((response) => response.json())
-                .then((data) => {
-                    products.value = data.data as Product[];
-                });
+            fetchProducts();
         });
         return {
             products,
