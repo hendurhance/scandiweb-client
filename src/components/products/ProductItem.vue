@@ -13,18 +13,9 @@ export default defineComponent({
     },
 
     setup(props) {
-        // const handleCheckboxChange = (event: Event) => {
-        //     // when its checked, set to true, when unchecked, set to false
-        //     const isChecked = (event.target as HTMLInputElement).checked;
-        //     props.product.isChecked = isChecked;
-        //     // the value of the checkbox is the same as the value of the product's isChecked property
-        //     (event.target as HTMLInputElement).value = isChecked.toString();
-        // };
-        
         return {
             product: { ...props.product, isChecked: false },
             decimalToWholeNumber,
-            // handleCheckboxChange,
         }
     }
 });

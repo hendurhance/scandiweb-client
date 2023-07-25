@@ -16,11 +16,10 @@ footer {
   height: 4rem;
   background-color: var(--color-white);
   border-top: 1px solid #eaeaea;
-}
 
-footer span {
-  font-size: 1rem;
-  font-weight: 400;
+  span {
+    font-size: 1rem;
+    font-weight: 400;
+  }
 }
-
 </style>

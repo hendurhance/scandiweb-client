@@ -52,3 +52,12 @@ select {
   border-radius: 0.25rem;
   border: 1px solid #eaeaea;
 }
+
+button {
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  border: 1px solid #eaeaea;
+  background-color: var(--color-white);
+  box-shadow: var(--box-shadow-style);
+  cursor: pointer;
+}

@@ -21,7 +21,8 @@
                     </div>
                     <div class="form-group">
                         <label for="type">Type Switcher</label>
-                        <select id="productType" name="type" v-model="selectedProductType" @change="handleProductTypeChange">
+                        <select id="productType" name="type" v-model="selectedProductType"
+                            @change="handleProductTypeChange">
                             <option value="dvd">DVD</option>
                             <option value="book">Book</option>
                             <option value="furniture">Furniture</option>
@@ -72,37 +73,36 @@ export default defineComponent({
         BaseHeader,
     },
     setup() {
-        // Use the useProductFormValidation and useProductTypeHandler composables
         const { errors, validateForm, resetFormEntries } = useProductFormValidation();
         const { selectedProductType, handleProductTypeChange, productTypeMessage } = useProductTypeHandler();
 
-        // Define the API URL
         const apiURL = config.api.baseUrl;
         const router = useRouter();
 
-        const submitForm = () => {
+        const submitForm = async () => {
             const form = document.getElementById("product_form") as HTMLFormElement;
             const formData = new FormData(form);
             const data = Object.fromEntries(formData.entries());
             validateForm(data);
 
             if (Object.keys(errors.value).length === 0) {
-                fetch(`${apiURL}/products/store`, {
-                    method: "POST",
-                    body: JSON.stringify(data),
-                })
-                    .then((response) => response.json())
-                    .then((data) => {
-                        if (data.status === "success") {
-                            resetFormEntries(Object.fromEntries(formData.entries()));
-                            router.push('/');
-                        } else {
-                            errors.value.sku = data.message;
-                        }
-                    })
-                    .catch((error) => {
-                        console.error("Error:", error);
+                try {
+                    const response = await fetch(`${apiURL}/products/store`, {
+                        method: "POST",
+                        body: JSON.stringify(data),
                     });
+
+                    const responseData = await response.json();
+
+                    if (responseData.status === "success") {
+                        resetFormEntries(Object.fromEntries(formData.entries()));
+                        router.push('/');
+                    } else {
+                        errors.value.sku = responseData.message;
+                    }
+                } catch (error) {
+                    console.error("Error:", error);
+                }
             } else {
                 throw new Error("Form is invalid");
             }
@@ -125,25 +125,25 @@ export default defineComponent({
     margin: 1rem;
     border: 1px solid #eaeaea;
     border-radius: 0.25rem;
-}
 
-form {
-    margin: 0 auto;
-    padding: 1rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
+    form {
+        margin: 0 auto;
+        padding: 1rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
 
-.form-group {
-    display: flex;
-    flex-direction: column;
-    margin: 0.5rem 0;
-}
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        margin: 0.5rem 0;
 
-.error-message {
-    margin-top: .25rem;
-    font-size: .8rem;
-    color: rgb(171, 0, 0);
+        .error-message {
+            margin-top: .25rem;
+            font-size: .8rem;
+            color: rgb(171, 0, 0);
+        }
+    }
 }
 </style>

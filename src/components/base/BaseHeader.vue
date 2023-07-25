@@ -57,25 +57,16 @@ header {
   background-color: var(--color-white);
   border-bottom: 1px solid #eaeaea;
   box-shadow: var(--box-shadow-style);
-}
 
-header h1 {
-  font-size: 2rem;
-  font-weight: 600;
+  h1 {
+    font-size: 2rem;
+    font-weight: 600;
+  }
 }
 
 .button-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 1rem;
-}
-
-button {
-  padding: 0.5rem 1rem;
-  border-radius: 0.25rem;
-  border: 1px solid #eaeaea;
-  background-color: var(--color-white);
-  box-shadow: var(--box-shadow-style);
-  cursor: pointer;
 }
 </style>
