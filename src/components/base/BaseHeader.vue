@@ -38,7 +38,7 @@ export default defineComponent({
     </h1>
     <div v-if="buttonMode === 'list'" class="button-grid">
       <button @click="handleAddClick">ADD</button>
-      <button id="delete-product-btn">MASS DELETE</button>
+      <button @click="$emit('massDelete')" id="delete-product-btn">MASS DELETE</button>
     </div>
     <div v-else-if="buttonMode === 'add'" class="button-grid">
       <button @click="$emit('submitForm')">Save</button>

@@ -13,9 +13,16 @@ export default defineComponent({
     },
 
     setup(props) {
+        const handleCheckboxChange = (event: Event) => {
+            const target = event.target as HTMLInputElement;
+            const checked = target.checked;
+            target.value = checked.toString();
+        };
+        
         return {
             product: props.product,
-            decimalToWholeNumber
+            decimalToWholeNumber,
+            handleCheckboxChange,
         }
     }
 });
@@ -29,7 +36,7 @@ export default defineComponent({
             <p v-if="product.type === 'dvd'">Size: {{ product.size }} MB</p>
             <p v-if="product.type === 'book'">Weight: {{ product.weight }} CM</p>
             <p v-if="product.type === 'furniture'">Dimensions: {{ product.width }}x{{ product.height }}x{{ product.length }}CM</p>
-            <input type="checkbox" class="delete-checkbox">
+            <input type="checkbox" class="delete-checkbox" :data-skuid="product.sku" value="false" @change="handleCheckboxChange" />
         </div>
     </div>
 </template>

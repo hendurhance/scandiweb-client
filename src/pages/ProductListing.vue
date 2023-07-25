@@ -1,6 +1,6 @@
 <template>
     <div>
-        <BaseHeader :title="'Product List'" :button-mode="'list'" />
+        <BaseHeader :title="'Product List'" :button-mode="'list'" @mass-delete="massDelete()" />
         <section>
             <div class="product-grid">
                 <ProductItem v-for="product in products" :key="product.id" :product="(product as Product)" />
@@ -24,6 +24,31 @@ export default defineComponent({
     setup() {
         const apiURL = config.api.baseUrl;
         const products = ref<Product[]>([]);
+
+        const massDelete = () => {
+            const checkboxes = document.querySelectorAll('.delete-checkbox');
+            const skusToDelete: string[] = [];
+            checkboxes.forEach((checkbox) => {
+                const checked = checkbox.getAttribute('value');
+                if (checked === 'true') {
+                    skusToDelete.push(checkbox.getAttribute('data-skuid') as string);
+                }
+            });
+            const skusToDeleteString = skusToDelete.join(',');
+
+            fetch(`${apiURL}/products/delete?sku=${skusToDeleteString}`, {
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "text/plain",
+                },
+            })
+                .then((response) => response.json())
+                .then((data) => {
+                    if (data.status === 'success') {
+                        window.location.reload();
+                    }
+                });
+        };
         onMounted(() => {
             fetch(`${apiURL}/products`)
                 .then((response) => response.json())
@@ -33,6 +58,7 @@ export default defineComponent({
         });
         return {
             products,
+            massDelete,
         }
     }
 });
