@@ -39,7 +39,7 @@ export default defineComponent({
             }
         };
 
-        const massDelete = () => {
+        const massDelete = async () => {
             const checkboxes = document.querySelectorAll('.delete-checkbox');
             const skus: string[] = [];
 
@@ -50,20 +50,20 @@ export default defineComponent({
                 }
             });
 
-            const skusToString = skus.join(',');
-
-            fetch(`${apiURL}/products/delete?sku=${skusToString}`, {
-                method: "DELETE",
-                headers: {
-                    "Content-Type": "text/plain",
-                },
-            })
-                .then((response) => response.json())
-                .then((data) => {
-                    if (data.status === 'success') {
-                        fetchProducts();
-                    }
+            try {
+                const response = await fetch(`${apiURL}/products/delete?sku=${skus.join(',')}`, {
+                    method: "DELETE",
+                    headers: {
+                        "Content-Type": "text/plain",
+                    },
                 });
+                const data = await response.json();
+                if (data.status === 'success') {
+                    await fetchProducts();
+                }
+            } catch (error) {
+                console.error("Error deleting products:", error);
+            }
         };
 
         onMounted(async () => {

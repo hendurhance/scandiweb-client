@@ -14,7 +14,7 @@ export default defineComponent({
 
     setup(props) {
         return {
-            product: { ...props.product, isChecked: false },
+            product: props.product,
             decimalToWholeNumber,
         }
     }
