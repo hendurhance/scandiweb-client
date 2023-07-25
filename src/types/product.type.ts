@@ -9,4 +9,5 @@ export default interface Product {
     width?: number | null;
     height?: number | null;
     length?: number | null;
+    isChecked?: boolean;
 }

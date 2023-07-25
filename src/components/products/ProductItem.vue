@@ -13,16 +13,18 @@ export default defineComponent({
     },
 
     setup(props) {
-        const handleCheckboxChange = (event: Event) => {
-            const target = event.target as HTMLInputElement;
-            const checked = target.checked;
-            target.value = checked.toString();
-        };
+        // const handleCheckboxChange = (event: Event) => {
+        //     // when its checked, set to true, when unchecked, set to false
+        //     const isChecked = (event.target as HTMLInputElement).checked;
+        //     props.product.isChecked = isChecked;
+        //     // the value of the checkbox is the same as the value of the product's isChecked property
+        //     (event.target as HTMLInputElement).value = isChecked.toString();
+        // };
         
         return {
-            product: props.product,
+            product: { ...props.product, isChecked: false },
             decimalToWholeNumber,
-            handleCheckboxChange,
+            // handleCheckboxChange,
         }
     }
 });
@@ -36,7 +38,7 @@ export default defineComponent({
             <p v-if="product.type === 'dvd'">Size: {{ product.size }} MB</p>
             <p v-if="product.type === 'book'">Weight: {{ product.weight }} CM</p>
             <p v-if="product.type === 'furniture'">Dimensions: {{ product.width }}x{{ product.height }}x{{ product.length }}CM</p>
-            <input type="checkbox" class="delete-checkbox" :data-skuid="product.sku" value="false" @change="handleCheckboxChange" />
+            <input type="checkbox" class="delete-checkbox" :data-skuid="product.sku" />
         </div>
     </div>
 </template>

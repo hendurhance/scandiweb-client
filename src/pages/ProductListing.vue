@@ -27,16 +27,18 @@ export default defineComponent({
 
         const massDelete = () => {
             const checkboxes = document.querySelectorAll('.delete-checkbox');
-            const skusToDelete: string[] = [];
+            const skus: string[] = [];
+
             checkboxes.forEach((checkbox) => {
-                const checked = checkbox.getAttribute('value');
-                if (checked === 'true') {
-                    skusToDelete.push(checkbox.getAttribute('data-skuid') as string);
+                const inputElement = checkbox as HTMLInputElement;
+                if (inputElement.checked) {
+                    skus.push(inputElement.dataset.skuid as string);
                 }
             });
-            const skusToDeleteString = skusToDelete.join(',');
 
-            fetch(`${apiURL}/products/delete?sku=${skusToDeleteString}`, {
+            const skusToString = skus.join(',');
+
+            fetch(`${apiURL}/products/delete?sku=${skusToString}`, {
                 method: "DELETE",
                 headers: {
                     "Content-Type": "text/plain",
